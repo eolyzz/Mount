@@ -1,8 +1,8 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'footitems/foodItemsRow.dart';
-import 'footitems/foodItemsRow2.dart';
+import 'package:mount/screens/itemCart/garriCart.dart';
+import 'package:mount/screens/itemCart/plantainCart.dart';
 
 class CatalogItem extends StatelessWidget {
   const CatalogItem({Key? key}) : super(key: key);
@@ -20,7 +20,7 @@ class CatalogItem extends StatelessWidget {
                 child: Container(
                   height: 290,
                   width: 180,
-                  child: foodItemsRow(),
+                  child: garriCart(),
                 ),
               )
             ],
@@ -51,7 +51,7 @@ class CatalogItem extends StatelessWidget {
                 child: Container(
                   height: 290,
                   width: 180,
-                  child: foodItemsRow2(),
+                  child: plantainCart(),
                 ),
               )
             ],

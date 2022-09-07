@@ -1,40 +1,18 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:mount/screens/products/items/plantain.dart';
 
 // ignore: camel_case_types
-class foodItemsRow extends StatelessWidget {
-  const foodItemsRow({Key? key}) : super(key: key);
+class plantainCart extends StatelessWidget {
+  const plantainCart({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Column(
         children: <Widget>[
-          Container(
-            height: 168,
-            width: 300,
-            child: Image(
-              image: AssetImage('assets/garri.png'),
-              // resize the image
-            ),
-          ),
-          Text(
-            "Garri",
-            style: TextStyle(
-              fontSize: 27.0,
-              fontFamily: 'Arvo',
-            ),
-          ),
-          // Product Description
-          Text(
-            "N5,000",
-            style: TextStyle(
-              fontSize: 33.0,
-              fontWeight: FontWeight.bold,
-              fontFamily: 'OpenSans',
-            ),
-          ),
+          plantain(),
           // Add to cart
           Stack(
             alignment: Alignment.center,

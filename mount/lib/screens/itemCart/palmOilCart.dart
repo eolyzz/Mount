@@ -1,39 +1,18 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:mount/screens/products/items/palmOil.dart';
 
 // ignore: camel_case_types
-class foodItemsRow2 extends StatelessWidget {
-  const foodItemsRow2({Key? key}) : super(key: key);
+class palmOilCart extends StatelessWidget {
+  const palmOilCart({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Column(
         children: <Widget>[
-          Container(
-            width: 125,
-            child: Image(
-              image: AssetImage('assets/plantain.png'),
-              // resize the image
-            ),
-          ),
-          Text(
-            "Plantain",
-            style: TextStyle(
-              fontSize: 27.0,
-              fontFamily: 'Arvo',
-            ),
-          ),
-          // Product Description
-          Text(
-            "N5,000",
-            style: TextStyle(
-              fontSize: 33.0,
-              fontWeight: FontWeight.bold,
-              fontFamily: 'OpenSans',
-            ),
-          ),
+          palmOil(),
           // Add to cart
           Stack(
             alignment: Alignment.center,
