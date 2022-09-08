@@ -1,28 +1,49 @@
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 
 class CustomNavBar extends StatelessWidget {
-  final onTap;
-  final index;
   const CustomNavBar({
     Key? key,
-    required this.onTap,
-    this.index,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return CurvedNavigationBar(
+    return BottomAppBar(
       color: Colors.yellow.shade800,
-      backgroundColor: Colors.white,
-      animationDuration: Duration(milliseconds: 150),
-      items: [
-        Icon(Icons.home),
-        Icon(Icons.account_circle),
-        Icon(Icons.help),
-      ],
-      buttonBackgroundColor: Colors.white,
-      animationCurve: Curves.fastLinearToSlowEaseIn,
+      child: Container(
+        height: 55,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            IconButton(
+              icon: Icon(
+                Icons.home,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                Navigator.pushNamed(context, '/');
+              },
+            ),
+            IconButton(
+              icon: Icon(
+                Icons.shopping_cart,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                Navigator.pushNamed(context, '/cartDisplay');
+              },
+            ),
+            IconButton(
+              icon: Icon(
+                Icons.person,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                Navigator.pushNamed(context, '/accountPage');
+              },
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

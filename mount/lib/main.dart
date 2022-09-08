@@ -10,5 +10,6 @@ void main() => runApp(MaterialApp(
         '/palmOilDetails': (context) => const palmOilDetails(),
         '/plantainDetails': (context) => const plantainDetails(),
         '/cartDisplay': (context) => const cartDisplay(),
+        '/accountPage': (context) => const accountPage(),
       },
     ));

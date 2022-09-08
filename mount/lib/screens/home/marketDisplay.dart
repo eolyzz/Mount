@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mount/background/background.dart';
-import 'package:mount/screens/Catalogs/CatalogItem.dart';
-import 'package:mount/screens/Catalogs/CatalogItem2.dart';
+import 'package:mount/models/models.dart';
+import 'package:mount/widgets/widgets.dart';
 
 class marketDisplay extends StatefulWidget {
   const marketDisplay({Key? key}) : super(key: key);
@@ -17,17 +17,7 @@ class _marketDisplayState extends State<marketDisplay> {
       body: Stack(
         children: <Widget>[
           Background(),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              Container(
-                child: CatalogItem(),
-              ),
-              Container(
-                child: CatalogItem2(),
-              ),
-            ],
-          ),
+          ProductCarousel(products: Product.products),
         ],
       ),
     );

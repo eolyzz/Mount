@@ -1,8 +1,5 @@
 export 'home/mainDisplay.dart';
-export 'home/cartDisplay.dart';
-export 'products/productDetails/garriDetails.dart';
-export 'products/productDetails/palmOilDetails.dart';
-export 'products/productDetails/plantainDetails.dart';
-export 'accountPage.dart';
-export 'helpPage.dart';
+export 'cart/cart_screen.dart';
+export 'package:mount/products/product_screen.dart';
+export 'account/account_screen.dart';
 export 'home/marketDisplay.dart';

@@ -11,7 +11,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       title: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-        Text('Mountain'),
+        Text(title),
         IconButton(
             onPressed: () {
               Navigator.of(context).pushNamed('/cartDisplay');
