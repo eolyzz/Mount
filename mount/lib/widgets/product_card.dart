@@ -18,7 +18,10 @@ class ProductCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(50),
             child: TextButton(
               onPressed: () {
-                Navigator.of(context).pushNamed('/garriDetails');
+                Navigator.of(context).pushNamed(
+                  '/product',
+                  arguments: product,
+                );
               },
               child: Row(
                 children: [

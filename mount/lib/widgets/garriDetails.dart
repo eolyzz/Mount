@@ -1,11 +1,14 @@
-import 'dart:ui';
-
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:mount/background/background.dart';
 
-// ignore: camel_case_types
 class garriDetails extends StatefulWidget {
-  const garriDetails({Key? key}) : super(key: key);
+  final Category category;
+
+  const garriDetails({
+    Key? key,
+    required this.category,
+  }) : super(key: key);
 
   @override
   State<garriDetails> createState() => _garriDetailsState();
