@@ -1,10 +1,8 @@
-import 'dart:ui';
+import 'dart:ffi';
 
 import 'package:flutter/material.dart';
-import 'package:mount/background/background.dart';
-import 'package:mount/widgets/cart_navbar.dart';
-import 'package:mount/widgets/custom_appbar.dart';
-import 'package:mount/widgets/custom_navbar.dart';
+import 'package:mount/models/models.dart';
+import 'package:mount/widgets/widgets.dart';
 
 class cartDisplay extends StatefulWidget {
   const cartDisplay({Key? key}) : super(key: key);
@@ -18,82 +16,46 @@ class _cartDisplayState extends State<cartDisplay> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(title: 'Cart'),
-      body: Stack(
-        children: [
-          Background(),
-          Column(
-            children: [
-              Text('CART SUMMARY'),
-              Container(
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('Subtotal'),
-                      Text('N1,850'),
-                    ]),
-                color: Colors.grey.shade100,
-              ),
-              Text('CART'),
-              Container(
-                child: Column(
-                  children: [
-                    Container(
-                      color: Colors.grey.shade100,
-                      child: Column(
-                        children: [
-                          Row(
-                            children: [
-                              Container(
-                                child: Image(
-                                    image: AssetImage('assets/garri.png')),
-                                width: 200,
-                              ),
-                              Column(
-                                children: [
-                                  Text(
-                                    "Garri",
-                                    style: TextStyle(
-                                      fontSize: 27.0,
-                                      fontFamily: 'Arvo',
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                  Text('N14,250'),
-                                ],
-                              ),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                children: [
-                                  Icon(Icons.remove_shopping_cart),
-                                  Text('REMOVE'),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Container(
-                                    child: Text('-'),
-                                  ),
-                                  Text('1'),
-                                  Container(
-                                    child: Text('+'),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10.0),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                Text(
+                  'Free Delivery Within Warri',
+                  style: Theme.of(context).textTheme.headline6,
                 ),
-              )
-            ],
-          ),
-        ],
+                // ElevatedButton(
+                //     onPressed: () {
+                //       Navigator.pushNamed(context, '/');
+                //     },
+                //     style: ElevatedButton.styleFrom(
+                //       primary: Colors.black,
+                //       shape: RoundedRectangleBorder(),
+                //       elevation: 0,
+                //     ),
+                //     child: Text(
+                //       'Add More Items',
+                //       style: Theme.of(context).textTheme.headline6!.copyWith(
+                //             color: Colors.white,
+                //           ),
+                //     )),
+              ],
+            ),
+            SizedBox(height: 10),
+            SizedBox(
+                height: 400,
+                child: ListView.builder(
+                  itemCount: Cart.products.length,
+                  itemBuilder: ((context, index) {
+                    return CartProductCard(
+                      product: Cart.products[index],
+                    );
+                  }),
+                )),
+          ],
+        ),
       ),
       bottomNavigationBar: CartNavBar(),
     );

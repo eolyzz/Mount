@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mount/models/models.dart';
 
 class CartNavBar extends StatelessWidget {
   const CartNavBar({
@@ -25,7 +26,7 @@ class CartNavBar extends StatelessWidget {
                     primary: Colors.black,
                   ),
                   onPressed: () {},
-                  child: Text('Checkout(N14,250)')),
+                  child: Text('Checkout(\$${Cart().totalString})')),
             ]),
             color: Colors.yellow.shade800,
             width: 350,

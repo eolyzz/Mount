@@ -18,37 +18,78 @@ class ProductScreen extends StatelessWidget {
       body: ListView(
         children: [
           Container(
-            height: 152,
-            width: 300,
-            child: Image(
-              image: AssetImage(product.imageUrl),
-              // resize the image
+            margin: EdgeInsets.symmetric(horizontal: 5.0, vertical: 20.0),
+            child: ClipRRect(
+              borderRadius: BorderRadius.all(Radius.circular(5.0)),
+              child: Stack(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image(
+                        image: AssetImage(product.imageUrl),
+                        fit: BoxFit.cover,
+                        width: 300.0,
+                        // resize the image
+                      ),
+                    ],
+                  ),
+                  Positioned(
+                    bottom: 0.0,
+                    left: 0.0,
+                    right: 0.0,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [
+                            Color.fromARGB(
+                              200,
+                              0,
+                              0,
+                              0,
+                            ),
+                            Color.fromARGB(0, 0, 0, 0)
+                          ],
+                          begin: Alignment.bottomCenter,
+                          end: Alignment.topCenter,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
           Container(
-            child: Column(children: [
-              Text(
-                product.name,
-                style: Theme.of(context)
-                    .textTheme
-                    .headline5!
-                    .copyWith(color: Colors.grey),
-              ),
-              Text(
-                product.price,
-                style: Theme.of(context)
-                    .textTheme
-                    .headline5!
-                    .copyWith(color: Colors.grey),
-              ),
-            ]),
+            margin: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+                  Text(
+                    product.name,
+                    style: Theme.of(context)
+                        .textTheme
+                        .headlineLarge!
+                        .copyWith(color: Colors.black),
+                  ),
+                  Text(
+                    product.price,
+                    style: Theme.of(context)
+                        .textTheme
+                        .headlineMedium!
+                        .copyWith(color: Colors.black),
+                  ),
+                ]),
+              ],
+            ),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
             child: ExpansionTile(
               initiallyExpanded: true,
               title: Text('Product Information',
-                  style: Theme.of(context).textTheme.headline3),
+                  style: Theme.of(context).textTheme.headline5),
               children: [
                 ListTile(
                   title: Text('CREATE A PRODUCT MODEL FOR DESCRIPTION',
@@ -62,7 +103,7 @@ class ProductScreen extends StatelessWidget {
             child: ExpansionTile(
               initiallyExpanded: true,
               title: Text('Delivery Information',
-                  style: Theme.of(context).textTheme.headline3),
+                  style: Theme.of(context).textTheme.headline5),
               children: [
                 ListTile(
                   title: Text('CREATE A PRODUCT MODEL FOR DESCRIPTION',
@@ -73,7 +114,56 @@ class ProductScreen extends StatelessWidget {
           )
         ],
       ),
-      bottomNavigationBar: CartNavBar(),
+      bottomNavigationBar: BottomAppBar(
+        color: Colors.white,
+        child: Container(
+          height: 70,
+          child:
+              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+            IconButton(
+                onPressed: () {
+                  Navigator.of(context).pushNamed('/call');
+                },
+                icon: Icon(Icons.phone)),
+            Container(
+              width: 350,
+              decoration: BoxDecoration(
+                  color: Colors.yellow.shade800,
+                  borderRadius: BorderRadius.circular(10)),
+              child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    IconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          Icons.share,
+                          color: Colors.black,
+                        )),
+                    TextButton(
+                        style: TextButton.styleFrom(
+                          primary: Colors.black,
+                        ),
+                        onPressed: () {},
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 10, horizontal: 20),
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Text(
+                            'Add to Cart',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15.0,
+                              color: Colors.black,
+                            ),
+                          ),
+                        )),
+                  ]),
+            ),
+          ]),
+        ),
+      ),
     );
   }
 }
