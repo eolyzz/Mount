@@ -5,4 +5,4 @@ export 'product_carousel.dart';
 export 'garriDetails.dart';
 export 'palmOilDetails.dart';
 export 'plantainDetails.dart';
-export 'cart_product_card.dart';
+export 'cart_appbar.dart';

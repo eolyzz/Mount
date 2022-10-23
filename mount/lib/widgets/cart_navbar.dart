@@ -26,7 +26,9 @@ class CartNavBar extends StatelessWidget {
                     primary: Colors.black,
                   ),
                   onPressed: () {},
-                  child: Text('Checkout(\$${Cart().totalString})')),
+                  child: Text('Checkout'
+                      //  (\$${Cart().totalString}
+                      )),
             ]),
             color: Colors.yellow.shade800,
             width: 350,

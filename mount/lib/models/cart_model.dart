@@ -4,10 +4,10 @@ import 'package:mount/models/models.dart';
 class Cart extends Equatable {
   const Cart();
 
-  String get totalString =>
-      products.fold('0', (total, current) => total + current.price);
+  // String get totalString =>
+  //   products.fold('0', (total, current) => total + current.price);
 
-  static List<Product> products = [
+  static Product products = [
     const Product(
       name: 'Garri',
       imageUrl: 'assets/garri.png',
@@ -23,7 +23,7 @@ class Cart extends Equatable {
       imageUrl: 'assets/palmOil.png',
       price: 'N3,500 ',
     ),
-  ];
+  ] as Product;
 
   @override
   List<Object?> get props => [];

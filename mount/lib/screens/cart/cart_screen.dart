@@ -1,63 +1,90 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mount/models/models.dart';
-import 'package:mount/widgets/widgets.dart';
 
-class cartDisplay extends StatefulWidget {
-  const cartDisplay({Key? key}) : super(key: key);
+import '../../widgets/widgets.dart';
 
-  @override
-  State<cartDisplay> createState() => _cartDisplayState();
-}
+class cartDisplay extends StatelessWidget {
+  final CartController controller = Get.find();
+  cartDisplay({Key? key}) : super(key: key);
 
-class _cartDisplayState extends State<cartDisplay> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: 'Cart'),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10.0),
-        child: Column(
-          children: [
-            Row(
-              children: [
-                Text(
-                  'Free Delivery Within Warri',
-                  style: Theme.of(context).textTheme.headline6,
-                ),
-                // ElevatedButton(
-                //     onPressed: () {
-                //       Navigator.pushNamed(context, '/');
-                //     },
-                //     style: ElevatedButton.styleFrom(
-                //       primary: Colors.black,
-                //       shape: RoundedRectangleBorder(),
-                //       elevation: 0,
-                //     ),
-                //     child: Text(
-                //       'Add More Items',
-                //       style: Theme.of(context).textTheme.headline6!.copyWith(
-                //             color: Colors.white,
-                //           ),
-                //     )),
-              ],
-            ),
-            SizedBox(height: 10),
-            SizedBox(
-                height: 400,
-                child: ListView.builder(
-                  itemCount: Cart.products.length,
-                  itemBuilder: ((context, index) {
-                    return CartProductCard(
-                      product: Cart.products[index],
-                    );
-                  }),
-                )),
-          ],
-        ),
+      appBar: CartAppBar(title: "Cart"),
+      body: SizedBox(
+        child: ListView.builder(
+            itemCount: controller.products.length,
+            itemBuilder: (BuildContext context, int index) {
+              return CartProductCard(
+                controller: controller,
+                product: controller.products.keys.toList()[index],
+                quantity: controller.products.values.toList()[index],
+                index: index,
+              );
+            }),
       ),
-      bottomNavigationBar: CartNavBar(),
+    );
+  }
+}
+
+class CartProductCard extends StatelessWidget {
+  final CartController controller;
+  final Product product;
+  final int quantity;
+  final int index;
+
+  const CartProductCard({
+    Key? key,
+    required this.controller,
+    required this.product,
+    required this.quantity,
+    required this.index,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(),
+      child: Row(
+        children: [
+          Row(
+            children: [
+              Container(
+                width: 220,
+                child: Image(
+                  image: AssetImage(Product.products[index].imageUrl),
+                  // resize the image
+                ),
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    Product.products[index].name,
+                    style: const TextStyle(
+                      fontSize: 27.0,
+                      fontFamily: 'Arvo',
+                      color: Colors.black,
+                    ),
+                  ),
+                  Text(
+                    Product.products[index].price,
+                    style: TextStyle(
+                      fontSize: 33.0,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'OpenSans',
+                      color: Colors.black,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:mount/models/models.dart';
+import 'package:mount/screens/cart/cart_screen.dart';
+import 'package:get/get.dart';
 
 class ProductCard extends StatelessWidget {
-  final Product product;
+  final cartController = Get.put(CartController());
+  final int index;
 
-  const ProductCard({
+  ProductCard({
     Key? key,
-    required this.product,
+    required this.index,
   }) : super(key: key);
 
   @override
@@ -16,58 +19,56 @@ class ProductCard extends StatelessWidget {
         children: <Widget>[
           ClipRRect(
             borderRadius: BorderRadius.circular(50),
-            child: TextButton(
-              onPressed: () {
-                Navigator.of(context).pushNamed(
-                  '/product',
-                  arguments: product,
-                );
-              },
-              child: Row(
-                children: [
-                  Container(
-                    width: 220,
-                    child: Image(
-                      image: AssetImage(product.imageUrl),
-                      // resize the image
-                    ),
+            child: Row(
+              children: [
+                Container(
+                  width: 220,
+                  child: Image(
+                    image: AssetImage(Product.products[index].imageUrl),
+                    // resize the image
                   ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        product.name,
-                        style: TextStyle(
-                          fontSize: 27.0,
-                          fontFamily: 'Arvo',
-                          color: Colors.black,
-                        ),
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      Product.products[index].name,
+                      style: const TextStyle(
+                        fontSize: 27.0,
+                        fontFamily: 'Arvo',
+                        color: Colors.black,
                       ),
-                      Text(
-                        product.price,
-                        style: TextStyle(
-                          fontSize: 33.0,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'OpenSans',
-                          color: Colors.black,
-                        ),
+                    ),
+                    Text(
+                      Product.products[index].price,
+                      style: TextStyle(
+                        fontSize: 33.0,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'OpenSans',
+                        color: Colors.black,
                       ),
-                      Stack(
-                        alignment: Alignment.center,
-                        children: <Widget>[
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(10),
-                            child: Container(
-                              width: 145.0,
-                              height: 28.0,
-                              color: Colors.yellow[800],
-                            ),
+                    ),
+                    Stack(
+                      alignment: Alignment.center,
+                      children: <Widget>[
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: Container(
+                            width: 145.0,
+                            height: 28.0,
+                            color: Colors.yellow[800],
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              //Icon(Icons.add),
-                              Text(
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            //Icon(Icons.add),
+                            ElevatedButton(
+                              onPressed: () {
+                                cartController
+                                    .addProduct(Product.products[index]);
+                              },
+                              child: Text(
                                 "Add to Cart",
                                 style: TextStyle(
                                   fontSize: 20.0,
@@ -76,16 +77,16 @@ class ProductCard extends StatelessWidget {
                                   color: Colors.black,
                                 ),
                               ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
             ),
-          )
+          ),
         ],
       ),
       decoration: BoxDecoration(
