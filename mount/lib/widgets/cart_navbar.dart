@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mount/models/models.dart';
+import 'package:mount/screens/cart/cart_total.dart';
 
 class CartNavBar extends StatelessWidget {
-  const CartNavBar({
+  final CartController controller = Get.find();
+  CartNavBar({
     Key? key,
   }) : super(key: key);
 
@@ -16,24 +19,43 @@ class CartNavBar extends StatelessWidget {
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           IconButton(
               onPressed: () {
-                Navigator.of(context).pushNamed('/call');
+                // Navigator.of(context).pushNamed('/call');
               },
               icon: Icon(Icons.phone)),
           Container(
             child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               TextButton(
-                  style: TextButton.styleFrom(
-                    primary: Colors.black,
+                style: TextButton.styleFrom(
+                  primary: Colors.black,
+                ),
+                onPressed: () {},
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 110),
+                  child: Row(
+                    children: [
+                      Text(
+                        "Total",
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        "${controller.total}",
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
                   ),
-                  onPressed: () {},
-                  child: Text('Checkout'
-                      //  (\$${Cart().totalString}
-                      )),
+                ),
+              ),
             ]),
-            color: Colors.yellow.shade800,
-            width: 350,
           ),
         ]),
+        color: Colors.yellow.shade800,
+        width: 350,
       ),
     );
   }
